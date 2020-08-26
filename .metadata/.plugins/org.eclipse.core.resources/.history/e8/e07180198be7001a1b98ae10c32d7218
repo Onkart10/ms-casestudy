@@ -1,0 +1,79 @@
+package com.ibm.training.ms.orderms.service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestTemplate;
+
+@Component
+public class AuthService {
+	
+	@Autowired
+	DiscoveryClient discoveryClient;
+	
+	public boolean vlidateToken(HttpServletRequest request) {
+		
+		List<ServiceInstance> instances = discoveryClient.getInstances("accountms");
+		for (ServiceInstance inst : instances) {
+			System.out.println(inst.getHost() + ":" + inst.getPort());
+		}
+		ServiceInstance instance = instances.get(0);
+		String host = instance.getHost();
+		int port = instance.getPort();
+		
+		//String url = "http://localhost:8080/validateToken";
+		String url = "http://" + host + ":" + port + "/validateToken";
+		RestTemplate restTemplate = new RestTemplate();
+		boolean isValidToken = false;
+
+		try {
+			String authHeader = request.getHeader("Authorization");
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			headers.set("Authorization", authHeader);
+			
+			HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+			
+			//new
+			List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
+			//Add the Jackson Message converter
+			MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+
+			// Note: here we are making this converter to process any kind of response, 
+			// not only application/*json, which is the default behaviour
+			converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
+			messageConverters.add(converter);  
+			restTemplate.setMessageConverters(messageConverters); 
+			
+			
+			ResponseEntity<Boolean> response = restTemplate.exchange(url, HttpMethod.GET, entity, Boolean.class);
+			
+			isValidToken = response.getBody();
+		}catch (HttpClientErrorException | HttpServerErrorException httpClientOrServerExc) {
+			httpClientOrServerExc.printStackTrace();
+			if (HttpStatus.UNAUTHORIZED.equals(httpClientOrServerExc.getStatusCode())) {
+				System.out.println("Un authorized..");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return isValidToken;
+	}
+}

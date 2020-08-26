@@ -1,0 +1,9 @@
+package com.ibm.training.ms.accountms.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.ibm.training.ms.accountms.model.DAOUser;
+
+public interface UserDao extends CrudRepository<DAOUser, Integer> {
+	DAOUser findByUsername(String username);
+}

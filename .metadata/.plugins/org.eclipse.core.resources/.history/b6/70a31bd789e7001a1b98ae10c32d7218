@@ -1,0 +1,7 @@
+package com.ibm.accountms.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<UserRepository, Integer> {
+	UserRepository findByUsername(String username);
+}
