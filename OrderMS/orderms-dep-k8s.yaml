@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: orderms
+    version: v1
+  name: orderms
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderms
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: orderms
+        version: v1
+    spec:
+      containers:
+      - image: gcr.io/sinuous-photon-284101/ordermsv101:8
+        imagePullPolicy: Always
+        name: orderms
+        ports:
+        - name: httpport
+          containerPort: 8090
+          hostPort: 8090
