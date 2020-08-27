@@ -31,11 +31,11 @@ public class OrderMsApplication {
 	@Bean
 	public CommandLineRunner clr(final ApplicationContext ctx) {
 		return (s) -> {
-			OrderDao order = new OrderDao("ASD33TT", new Date(), 1, 3000.00, "abc", "addr1","abc@gmail.com", "9999887766");
+			OrderDao order = new OrderDao("ZSK13CG", new Date(), 1, 2500.00, "abc", "addr1","abc@gmail.com", "9898989711");
 			orderRepository.save(order);
-			order =  new OrderDao("KJL1290", new Date(), 2, 2000.00, "xyz", "addr2","xyz@gmail.com", "8978563412");
+			order =  new OrderDao("ZSK13YY", new Date(), 2, 2800.00, "abc", "addr1","xyz@gmail.com", "9898989711");
 			orderRepository.save(order);
-			order = new OrderDao("KIB678Y", new Date(), 3, 1200.00, "qwe", "addr3","qwe@gmail.com", "9087564312");
+			order = new OrderDao("ZSK13UU", new Date(), 3, 2600.00, "abc", "addr1","test1@gmail.com", "9898989711");
 			orderRepository.save(order);
 		};
 	}
