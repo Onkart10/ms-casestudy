@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.persistence.criteria.Order"/>
+<fullyQualifiedTypeName name="org.apache.catalina.core.ApplicationContext"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.ibm.accountms.repository.UserRepository"/>
+<fullyQualifiedTypeName name="com.ibm.accountms.model.UserDTO"/>
+<fullyQualifiedTypeName name="com.ibm.accountms.model.UserDao"/>
+<fullyQualifiedTypeName name="com.ibm.orderms.model.OrderModel"/>
+<fullyQualifiedTypeName name="com.ibm.orderms.service.AuthService"/>
+<fullyQualifiedTypeName name="com.ibm.orderms.model.OrderDao"/>
+<fullyQualifiedTypeName name="com.ibm.orderms.repository.OrderMSRepository"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+<fullyQualifiedTypeName name="org.springframework.boot.builder.SpringApplicationBuilder"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.servlet.support.SpringBootServletInitializer"/>
+<fullyQualifiedTypeName name="com.ibm.training.ms.shoppingwebui.service.LoginService"/>
+<fullyQualifiedTypeName name="com.ibm.shopping.model.UserDao"/>
+<fullyQualifiedTypeName name="com.ibm.shopping.model.AuthResponse"/>
+<fullyQualifiedTypeName name="com.ibm.shopping.service.OrderService"/>
+<fullyQualifiedTypeName name="com.ibm.shopping.model.OrderDao"/>
+<fullyQualifiedTypeName name="com.ibm.shopping.service.LoginService"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.EnableEurekaClient"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+</qualifiedTypeNameHistroy>

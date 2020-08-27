@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: accountms
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+  datasource: 
+    username: sa
+    password: 
+    url: jdbc:h2:mem:currencyConversionDb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+
+jwt:
+  secret: secretkey
+  get:
+    token:
+      uri: /authenticate
+
+server:
+  port: 8080  
+  
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
+    preferIpAddress: true
+    metadata-map:
+      zone: A
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+     defaultZone: http://localhost:8761/eureka 
+      #defaultZone: http://eureka:8761/eureka      

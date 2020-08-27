@@ -1,6 +1,7 @@
 spring:
   application:
     name: accountms
+    debug: true
 
   h2:
     console:
@@ -21,9 +22,11 @@ jwt:
   get:
     token:
       uri: /authenticate
+      
+      
 
 server:
-  port: 8080  
+  port: 8082
   
 eureka:
   instance:
